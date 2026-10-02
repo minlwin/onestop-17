@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { BarChart3, LogIn, UserPlus } from "lucide-react";
+import Link from "next/link";
 
 export default function WelcomePage() {
   return (
@@ -13,11 +14,11 @@ export default function WelcomePage() {
       </header>
 
       <nav className="space-x-2">
-        <Button>
+        <Button render={<Link href={'/signup'} />} nativeButton={false}>
           <UserPlus /> Sign Up
         </Button>
 
-        <Button variant={'outline'}>
+        <Button variant={'outline'} render={<Link href={'/signin'} />} nativeButton={false}>
           <LogIn /> Sign In
         </Button>
 
