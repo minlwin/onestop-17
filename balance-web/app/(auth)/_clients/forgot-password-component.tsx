@@ -2,7 +2,7 @@
 
 import FormsInput from "@/components/forms/forms-input"
 import { Button } from "@/components/ui/button"
-import { ForgotPasswordForm, forgotPasswordSchema } from "@/lib/types/forms/auth.schema"
+import { ForgotPasswordForm, forgotPasswordSchema } from "@/lib/types/anonymous/auth.schema"
 import { executeAction } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Send } from "lucide-react"

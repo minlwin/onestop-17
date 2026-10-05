@@ -1,4 +1,5 @@
 import z from "zod";
+import { Role } from "..";
 
 export const signInSchema = z.object({
     email: z.email("Enter a valid email").nonempty("Please enter your email"),
@@ -33,3 +34,14 @@ export const activationSchema = z.object({
 })
 
 export type ActivationForm = z.infer<typeof activationSchema>
+
+export interface UserInfo {
+    name : string
+    email : string
+    role : Role
+}
+
+export type AuthResult =  UserInfo & {
+    accessToken : string
+    refreshToken : string
+}

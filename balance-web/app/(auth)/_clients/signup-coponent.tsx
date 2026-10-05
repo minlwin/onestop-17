@@ -2,9 +2,9 @@
 
 import FormsInput from "@/components/forms/forms-input"
 import { Button } from "@/components/ui/button"
-import { SignUpForm, signUpSchema } from "@/lib/types/forms/auth.schema"
+import { SignUpForm, signUpSchema } from "@/lib/types/anonymous/auth.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { LogIn, UserPlus } from "lucide-react"
+import { UserPlus } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 
