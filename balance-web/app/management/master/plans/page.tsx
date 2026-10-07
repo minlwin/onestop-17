@@ -1,8 +1,8 @@
 import ManagementTemplate from "@/components/widgets/pages/management-template";
 
-export default function ManagementHomePage() {
+export default function PlanMasterPage() {
     return (
-        <ManagementTemplate page="Dashboard" >
+        <ManagementTemplate page="Subscription Plan Master" >
             <></>
         </ManagementTemplate>
     )

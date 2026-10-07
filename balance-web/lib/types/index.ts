@@ -6,3 +6,8 @@ export interface ModificationResult<T> {
 }
 
 export type Role = "Administrator" | "Management" | "Partner" | "Employee"
+
+export interface SelectOption {
+    value : string
+    label : string
+}
