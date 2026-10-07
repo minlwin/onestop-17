@@ -2,13 +2,14 @@
 
 import FormsInput from "@/components/forms/forms-input"
 import { Button } from "@/components/ui/button"
-import { Field, FieldError, FieldLabel } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
 import { SignInForm, signInSchema } from "@/lib/types/anonymous/auth.schema"
+import { executeAction } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { LogIn, UserPlus } from "lucide-react"
+import { LogIn } from "lucide-react"
 import Link from "next/link"
-import { Controller, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
+
+import * as action from "@/lib/service/action/auth.action"
 
 export default function SignInComponent() {
 
@@ -21,7 +22,9 @@ export default function SignInComponent() {
     })
 
     function signIn(form: SignInForm) {
-        console.log(form)
+        executeAction(async () => {
+            await action.signIn(form)
+        })
     }
 
     return (
