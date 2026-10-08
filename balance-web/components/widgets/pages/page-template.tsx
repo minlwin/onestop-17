@@ -45,7 +45,7 @@ export default function PageTemplate({system, page, links, children} : PageTempl
                 </div>
             </header>
 
-            <main className="mx-4">
+            <main className="mx-4 space-y-4">
                 {children}
             </main>
         </>
