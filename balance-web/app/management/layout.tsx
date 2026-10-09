@@ -8,8 +8,8 @@ const menus:MenuItem[] = [
     {name : "Payment Management", icon: "paymentManagement", route : "/management/payments"},
     {name : "Registrations", icon : "registrationManagement", route: "/management/registrations"},
     {name : "Master Data", icon : "masterData", subMenus: [
-        {name : "Payment Plan", route: "/management/master/plans"},
-        {name : "Payment Infomation", route : "/management/master/payments"}
+        {name : "Payment Infomation", route : "/management/master/payments"},
+        {name : "Subscription Plan", route: "/management/master/plans"},
     ]},
     {name : "User Management", icon: "userManagement", route: "/management/users"}
 ]
