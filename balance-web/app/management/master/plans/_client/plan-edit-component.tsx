@@ -10,6 +10,7 @@ import { Plus, Save, Trash } from "lucide-react"
 import { useFieldArray, useForm } from "react-hook-form"
 import * as action from "@/lib/service/action/management/subscription-plan.action"
 import { Card, CardContent } from "@/components/ui/card"
+import SectionTitle from "@/components/widgets/section-title"
 
 export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
     
@@ -18,10 +19,10 @@ export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
         defaultValues: {
             name : plan?.name || '',
             description : plan?.description || '',
-            price : plan?.price || 0,
-            maxEmployee : plan?.maxEmployee || 0,
-            maxLedger : plan?.maxLedger || 0,
-            maxEntry : plan?.maxEntry || 0,
+            price : plan?.price || "0",
+            maxEmployee : plan?.maxEmployee || "0",
+            maxLedger : plan?.maxLedger || "0",
+            maxEntry : plan?.maxEntry || "0",
             features : plan?.features || [
                 {name : ""}
             ]
@@ -62,7 +63,7 @@ export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
             <Card>
                 <CardContent>
                     <section className="space-y-4">
-                        <h3 className="text-xl font-semibold text-gray-600">Plan Setting</h3>
+                        <SectionTitle title="Plan Setting" />
 
                         <div className="grid grid-cols-3 gap-4">
                             {/* Basic Inputs */}
@@ -82,7 +83,7 @@ export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
                     <section className="space-y-4">
                         {/* Features */}
                         <nav className="flex justify-between">
-                            <h3 className="text-xl font-semibold text-gray-600">Plan Features</h3>
+                            <SectionTitle title="Plan Features" />
                             <Button onClick={addFeature} variant={'outline'}>
                                 <Plus /> Add Feature
                             </Button>
@@ -105,7 +106,7 @@ export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
             <Card>
                 <CardContent>
                     <section className="space-y-4">
-                        <h3 className="text-xl font-semibold text-gray-600">Description</h3>
+                        <SectionTitle title="Description" />
                         <FormsTextarea control={form.control} name="description" />
                     </section>
                 </CardContent>

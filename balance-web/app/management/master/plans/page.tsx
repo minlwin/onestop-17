@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import DetailsLink from "@/components/widgets/details-link";
 import NoMasterData from "@/components/widgets/no-master-data";
 import ManagementTemplate from "@/components/widgets/pages/management-template";
 
@@ -44,7 +45,8 @@ async function PlanMasterList() {
                             <TableHead>Employee Limit</TableHead>
                             <TableHead>Ledger Limit</TableHead>
                             <TableHead>Daily Entry Limit</TableHead>
-                            <TableHead>Description</TableHead>
+                            <TableHead>Created At</TableHead>
+                            <TableHead>Modified At</TableHead>
                             <TableHead></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -57,11 +59,10 @@ async function PlanMasterList() {
                             <TableCell>{item.maxEmployee}</TableCell>
                             <TableCell>{item.maxLedger}</TableCell>
                             <TableCell>{item.maxEntry}</TableCell>
-                            <TableCell>{item.description}</TableCell>
+                            <TableCell>{item.createdAt}</TableCell>
+                            <TableCell>{item.modifiedAt}</TableCell>
                             <TableCell>
-                                <Link href={`/management/master/plans/${item.id}`}>
-                                    <ChevronRight size={20} />
-                                </Link>
+                                <DetailsLink route={`/management/master/plans/${item.id}`} />
                             </TableCell>
                         </TableRow>
                     )}    

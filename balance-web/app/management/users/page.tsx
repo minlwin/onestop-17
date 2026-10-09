@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as action from "@/lib/service/action/management/user-management.action"
+import DetailsLink from "@/components/widgets/details-link";
 
 export default function UserManagementPage() {
 
@@ -70,9 +71,7 @@ function ResultTable({ list } : { list : UserListItem [] }) {
                             <TableCell>{item.activatedAt}</TableCell>
                             <TableCell>{item.retiredAt}</TableCell>
                             <TableCell>
-                                <Link href={`/management/users/${item.id}`}>
-                                    <ChevronRight size={20} />
-                                </Link>
+                                <DetailsLink route={`/management/users/${item.id}`} />
                             </TableCell>
                         </TableRow>
                     )}    
