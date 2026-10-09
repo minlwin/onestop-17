@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from "react" // 1. Import useState
 import { Button } from "@/components/ui/button"
 import { RetirementForm, retirementSchema } from "@/lib/types/management/user.model"
 import { executeAction } from "@/lib/utils"
@@ -12,32 +13,38 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import FormsInput from "@/components/forms/forms-input"
 
 export default function RetirementComponent({userId} : {userId : string}) {
-
-    const form = useForm({
+    const [show, setShow] = useState(false)
+    const form = useForm<RetirementForm>({
         resolver: zodResolver(retirementSchema),
         defaultValues: {
             retireDate: ""
         }
     })
 
-    function updateRetirement(form : RetirementForm) {
+    function onSubmit(data: RetirementForm) {
         executeAction(async () => {
-            await action.updateRetirement(userId, form)
+            await action.updateRetirement(userId, data)
         })
+        form.reset()
+        setShow(false)
     }
 
     return (
-        <Dialog>
-            <form onSubmit={form.handleSubmit(updateRetirement)}>
-                <DialogTrigger render={
-                    <Button type="button" variant={'destructive'}><UserX /> Set Retirement</Button>
-                } />
-                <DialogContent>
+        <Dialog open={show} onOpenChange={setShow} >
+            <DialogTrigger render={
+                <Button type="button" variant={'destructive'}>
+                    <UserX /> Set Retirement
+                </Button>
+            } />
+            <DialogContent>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <DialogHeader>
                         <DialogTitle>Set Retirement</DialogTitle>
                         <DialogDescription>Please enter retire date to set retirement.</DialogDescription>
                     </DialogHeader>
+                    
                     <FormsInput control={form.control} name="retireDate" label="Retire Date" type="date" />
+                    
                     <DialogFooter>
                         <DialogClose render={
                             <Button type="button" variant={'outline'}>
@@ -48,9 +55,8 @@ export default function RetirementComponent({userId} : {userId : string}) {
                             <UserX /> Set Retirement
                         </Button>
                     </DialogFooter>
-                </DialogContent>
-
-            </form>
+                </form>
+            </DialogContent>
         </Dialog>
     )
 }

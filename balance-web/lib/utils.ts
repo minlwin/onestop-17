@@ -6,8 +6,11 @@ export async function executeAction(action : () => Promise<void>) {
     try {
         await action()
     } catch(e : any) {
-        if(!isRedirectError(e)) {
-            console.log(e)
+        if(isRedirectError(e)) {
+            console.log("Redirecting")
+            throw e
         }
+
+        console.log(e)
     }
 }
