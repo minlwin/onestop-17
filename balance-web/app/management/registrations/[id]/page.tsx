@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import ManagementTemplate from "@/components/widgets/pages/management-template"
 import * as client from "@/lib/service/client/management/registration.client"
 import { UserPlus } from "lucide-react"
-import ApproveButton from "../_client/approve-button"
+import ApproveButton from "./_client/approve-button"
 import SectionTitle from "@/components/widgets/section-title"
 import Info from "@/components/widgets/info"
 import AuditSection from "@/components/widgets/audit-section"
@@ -23,7 +23,9 @@ export default async function RegistrationDetailsPage(props : PageProps<'/manage
                             <span className="text-xl">{details.partnerName}</span>
                         </h3>
 
-                        <ApproveButton id={id} />
+                        {details.status === 'Pending' &&
+                            <ApproveButton id={id} />
+                        }
                     </CardTitle>
                 </CardHeader>
 

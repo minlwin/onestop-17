@@ -1,6 +1,6 @@
-import { ModificationResult, PageInfo, PageResult, PageSearch, SubscriptionDetails, SubscriptionListItem, SubscriptionSearch, SubscriptionStatusForm } from "@/lib/types";
+import { ModificationResult, PageInfo, PageResult, PageSearch, SubscriptionDetails, SubscriptionListItem, SubscriptionPageSearch, SubscriptionSearch, SubscriptionStatusForm } from "@/lib/types";
 
-export async function search(form : SubscriptionSearch & PageSearch) : Promise<PageResult<SubscriptionListItem>> {
+export async function search(form : SubscriptionPageSearch) : Promise<PageResult<SubscriptionListItem>> {
     return {
         contents: [dummyListItem],
         ...pageInfo

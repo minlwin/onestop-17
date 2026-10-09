@@ -1,14 +1,17 @@
 import z from "zod"
-import { AuditInfo } from ".."
+import { AuditInfo, PageSearch } from ".."
 
-export type SubscriptionStatus = "Pending" | "Approved" | "Expired"
+export type SubscriptionStatus = "Pending" | "Approved" | "Rejected" | "Expired"
+export const subscriptionStatusOptions = ["Pending", "Approved", "Expired"]
 
 export interface SubscriptionSearch {
-    status?: SubscriptionStatus
+    status?: string
     appliedFrom? : string
     appliedTo? : string
     keyword? : string
 }
+
+export type SubscriptionPageSearch = SubscriptionSearch & PageSearch
 
 export interface SubscriptionListItem {
     id: string
@@ -36,7 +39,7 @@ export type SubscriptionDetails = SubscriptionListItem
     } & AuditInfo
 
 export const subscriptionStatusSchema = z.object({
-    status : z.enum(["Pending", "Approved", "Expired"]).nonoptional("Please select status."),
+    status : z.string().nonempty("Please select status."),
     remark : z.string()
 })
 

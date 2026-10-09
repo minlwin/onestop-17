@@ -6,7 +6,7 @@ import React from "react";
 const menus:MenuItem[] = [
     {name : "Dashboard", icon: "dashboard", route : "/management"},
     {name : "Registrations", icon : "registrationManagement", route: "/management/registrations"},
-    {name : "Subscription Management", icon: "paymentManagement", route : "/management/subscriptions"},
+    {name : "Subscriptions", icon: "paymentManagement", route : "/management/subscriptions"},
     {name : "Master Data", icon : "masterData", subMenus: [
         {name : "Payment Infomation", route : "/management/master/payments"},
         {name : "Subscription Plan", route: "/management/master/plans"},
