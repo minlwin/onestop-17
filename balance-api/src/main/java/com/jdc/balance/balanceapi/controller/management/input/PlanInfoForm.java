@@ -1,5 +1,6 @@
 package com.jdc.balance.balanceapi.controller.management.input;
 
+import com.jdc.balance.balanceapi.model.dto.PlanInfoFeature;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

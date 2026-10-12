@@ -1,4 +1,4 @@
-package com.jdc.balance.balanceapi.controller.management.input;
+package com.jdc.balance.balanceapi.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

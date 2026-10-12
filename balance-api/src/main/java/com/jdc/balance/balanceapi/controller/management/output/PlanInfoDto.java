@@ -1,6 +1,6 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
-import com.jdc.balance.balanceapi.controller.management.input.PlanInfoFeature;
+import com.jdc.balance.balanceapi.model.dto.PlanInfoFeature;
 
 import java.time.LocalDateTime;
 import java.util.List;
