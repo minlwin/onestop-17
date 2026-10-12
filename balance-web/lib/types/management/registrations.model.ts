@@ -30,7 +30,7 @@ export interface RegistrationListItem {
 export type RegistrationDetails = RegistrationListItem & AuditInfo
 
 export const registrationStatusSchema = z.object({
-    status : z.string().nonempty("Please select status."),
+    status : z.string().nonempty("Please select status"),
     remark : z.string()
 })
 

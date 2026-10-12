@@ -47,7 +47,7 @@ const dummyDetails : SubscriptionDetails = {
     paymentProvider: "KBZ Pay",
     accountNo : "09782003098",
     accountName : "U Zaw Min Lwin",
-    pamentSlip : "dummySlip",
+    paymentSlip : "dummySlip",
     createdAt : "2026-10-01 10:00",
     createdBy : "U Aung Kyaw",
     modifiedAt: "",

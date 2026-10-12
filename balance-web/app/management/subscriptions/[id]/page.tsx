@@ -25,7 +25,7 @@ export default async function SubscriptionDetailsPage(props : PageProps<'/manage
                         </h3>
 
                         <nav className="space-x-2">
-                            <ShowSlipButton slip={details.pamentSlip} />
+                            <ShowSlipButton slip={details.paymentSlip} />
                             {details.status === 'Pending' && 
                                 <UpdateStatusButton id={id} />
                             }

@@ -35,11 +35,11 @@ export type SubscriptionDetails = SubscriptionListItem
         paymentProvider : string
         accountNo : string
         accountName : string
-        pamentSlip : string
+        paymentSlip : string
     } & AuditInfo
 
 export const subscriptionStatusSchema = z.object({
-    status : z.string().nonempty("Please select status."),
+    status : z.string().nonempty("Please select status"),
     remark : z.string()
 })
 
