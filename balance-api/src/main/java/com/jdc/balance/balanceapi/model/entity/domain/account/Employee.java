@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Employee extends AbstractEntity {
     @Id
     private UUID id;

@@ -5,11 +5,13 @@ import com.jdc.balance.balanceapi.model.dto.PlanInfoFeature;
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper = false)
 public class PlanInfo extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

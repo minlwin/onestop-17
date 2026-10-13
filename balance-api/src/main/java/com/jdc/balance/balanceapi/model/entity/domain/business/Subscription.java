@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Subscription extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class LedgerEntry extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

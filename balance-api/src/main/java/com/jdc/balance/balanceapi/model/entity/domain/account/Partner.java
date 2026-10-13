@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Partner extends AbstractEntity {
 
     @Id

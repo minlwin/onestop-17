@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Ledger extends AbstractEntity {
 
     @Id
