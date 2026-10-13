@@ -1,16 +1,19 @@
 package com.jdc.balance.balanceapi.model.entity.domain.account;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
+import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @Entity
+@EqualsAndHashCode
 public class Company extends AbstractEntity {
 
     @Id
@@ -19,4 +22,26 @@ public class Company extends AbstractEntity {
     @MapsId
     @OneToOne(optional = false)
     private Partner partner;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String category;
+
+    @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
+    private RegistrationStatus status;
+
+    @Column(nullable = false)
+    private LocalDateTime registerAt;
+
+    private LocalDateTime approvedAt;
+
+    @ManyToOne(optional = false)
+    private PlanInfo plan;
+
+    private LocalDate planExpiration;
 }
