@@ -1,6 +1,5 @@
 package com.jdc.balance.balanceapi.utils.security;
 
-import com.jdc.balance.balanceapi.controller.anonymous.ouput.TokenResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 

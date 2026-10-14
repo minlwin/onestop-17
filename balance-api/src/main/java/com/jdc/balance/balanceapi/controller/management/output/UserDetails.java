@@ -1,6 +1,7 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
 import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Member;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,4 +21,20 @@ public record UserDetails(
         long contractTotal,
         List<AccessLog> accessHistory
 ) {
+
+    public static UserDetails from(Member entity) {
+        return  new UserDetails(
+                entity.getId(),
+                entity.getName(),
+                entity.getPhone(),
+                entity.getEmail(),
+                entity.getStatus(),
+                entity.getAssignDate(),
+                entity.getAccount().getActivatedAt(),
+                entity.getResignDate(),
+                0,
+                0,
+                List.of()
+        );
+    }
 }

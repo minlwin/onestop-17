@@ -10,7 +10,6 @@ import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.repo.account.CompanyRepo;
-import com.jdc.balance.balanceapi.utils.exceptions.BalanceAppException;
 import com.jdc.balance.balanceapi.utils.listener.RegistrationApprovalEvent;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

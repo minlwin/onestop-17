@@ -1,6 +1,7 @@
 package com.jdc.balance.balanceapi.model.entity.domain.account;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
+import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +27,9 @@ public class Member extends AbstractEntity {
     private String phone;
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private UserStatus status;
 
     @Column(nullable = false)
     private LocalDate assignDate;
