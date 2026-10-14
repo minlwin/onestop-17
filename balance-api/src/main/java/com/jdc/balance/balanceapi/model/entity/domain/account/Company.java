@@ -34,6 +34,7 @@ public class Company extends AbstractEntity {
 
     @Column(nullable = false)
     private RegistrationStatus status;
+    private String remark;
 
     @Column(nullable = false)
     private LocalDateTime registerAt;

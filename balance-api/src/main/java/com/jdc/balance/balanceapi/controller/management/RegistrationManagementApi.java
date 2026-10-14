@@ -30,11 +30,11 @@ public class RegistrationManagementApi {
 
     @GetMapping("{id}")
     RegistrationDetails findById(@PathVariable String id) {
-        return  null;
+        return  service.findById(id);
     }
 
     @PutMapping("{id}")
     ModificationResult<UUID> update(@PathVariable String id, @Validated @RequestBody RegistrationStatusForm form) {
-        return  null;
+        return  service.update(id, form);
     }
 }

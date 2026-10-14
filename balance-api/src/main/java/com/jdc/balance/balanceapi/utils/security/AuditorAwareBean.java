@@ -1,4 +1,4 @@
-package com.jdc.balance.balanceapi.service.security;
+package com.jdc.balance.balanceapi.utils.security;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;
