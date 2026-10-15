@@ -66,6 +66,7 @@ public class UserManagementService {
         member.setPhone(form.phone());
         member.setEmail(form.email());
         member.setStatus(UserStatus.Pending);
+        member.setAssignDate(form.assignDate());
         memberRepo.save(member);
 
         eventPublisher.publishEvent(new AccountCreationEvent(account.getId()));

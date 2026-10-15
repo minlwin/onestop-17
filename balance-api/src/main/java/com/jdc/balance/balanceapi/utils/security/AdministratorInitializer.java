@@ -5,6 +5,7 @@ import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
 import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -20,7 +21,9 @@ public class AdministratorInitializer {
     private final AccountRepo accountRepo;
     private final PasswordEncoder passwordEncoder;
 
+    @Value("${app.admin.email}")
     private String adminEmail;
+    @Value("${app.admin.password}")
     private String adminPassword;
 
     @Transactional
