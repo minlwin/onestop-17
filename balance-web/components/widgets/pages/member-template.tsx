@@ -10,7 +10,7 @@ type TemplateProps = {
 
 export default function MemberTemplate({page, links, children} : TemplateProps) {
     return (
-        <PageTemplate page={page} links={links} system="Member Portal">
+        <PageTemplate page={page} links={links} system="Balance Application">
             {children}
         </PageTemplate>
     )

@@ -6,7 +6,7 @@ export async function signIn(form: SignInForm) : Promise<AuthResult> {
     return {
         name : "John Doe",
         email : "johndoe@example.com",
-        role : "Administrator",
+        role : "Partner",
         accessToken: "dummytoken",
         refreshToken: "dummytoken"
     }

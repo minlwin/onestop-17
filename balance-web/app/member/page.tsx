@@ -1,5 +1,9 @@
-export default function MemberHomePage() {
+import MemberTemplate from "@/components/widgets/pages/member-template";
+
+export default function MemberDashBoard() {
     return (
-        <>Management Home</>
+        <MemberTemplate page="Dashboard">
+            <></>
+        </MemberTemplate>
     )
 }

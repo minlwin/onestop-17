@@ -1,6 +1,7 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/widgets/sidebar/app-sidebar";
 import { MenuItem } from "@/lib/types";
+import { Metadata } from "next";
 import React from "react";
 
 const menus:MenuItem[] = [
@@ -13,6 +14,11 @@ const menus:MenuItem[] = [
     ]},
     {name : "User Management", icon: "userManagement", route: "/management/users"}
 ]
+
+export const metadata: Metadata = {
+  title: "Balances | Management",
+  description: "Management portal for balance application.",
+};
 
 export default function ManagementLayout({ children } : { children : Readonly<React.ReactNode>} ) {
     return (

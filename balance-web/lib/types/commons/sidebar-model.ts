@@ -5,7 +5,11 @@ import {
     ShieldCheck,
     UserPlus,
     Gauge,
-    ShoppingCart
+    ShoppingCart,
+    TrendingUp,
+    TrendingDown,
+    Cog,
+    ChartLine
 } from 'lucide-react'
 
 export const menuIcons = {
@@ -14,11 +18,15 @@ export const menuIcons = {
     "masterData" : DatabaseCheck,
     "planManagement" : ShieldCheck,
     "paymentManagement" : ShoppingCart,
-    "registrationManagement" : UserPlus
+    "registrationManagement" : UserPlus,
+    "balanceReport" : ChartLine,
+    "creditEntry" : TrendingUp,
+    "debitEntry" : TrendingDown,
+    "organization" : Cog
 } satisfies Record<string, LucideIcon>
 
 export type MenuIconType = keyof typeof menuIcons
-export type SystemName = "Management Portal" | "Member Portal"
+export type SystemName = "Management Portal" | "Balance Application"
 
 
 export interface MenuItem {
