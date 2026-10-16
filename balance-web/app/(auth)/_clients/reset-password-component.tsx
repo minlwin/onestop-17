@@ -7,7 +7,7 @@ import { executeAction } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Key } from "lucide-react"
 import { useForm } from "react-hook-form"
-import * as passwordService from "@/lib/service/action/password-recovery.action"
+import * as passwordService from "@/lib/service/action/anonymous/password-recovery.action"
 
 export default function ResetPasswordComponent() {
 

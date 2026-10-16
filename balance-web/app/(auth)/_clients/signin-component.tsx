@@ -9,7 +9,7 @@ import { LogIn } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 
-import * as action from "@/lib/service/action/auth.action"
+import * as action from "@/lib/service/action/anonymous/auth.action"
 
 export default function SignInComponent() {
 

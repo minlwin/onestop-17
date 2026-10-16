@@ -1,7 +1,7 @@
 'use server'
 
 import { ActivationForm, Role, SignInForm, SignUpForm } from "@/lib/types";
-import * as client from "@/lib/service/client/auth.client"
+import * as client from "@/lib/service/client/anonymous/auth.client"
 import * as store from "@/lib/store/auth.store"
 import { redirect } from "next/navigation";
 

@@ -31,6 +31,7 @@ public class AdministratorInitializer {
     void handle() {
         if(accountRepo.count() == 0L) {
             var admin = new Account();
+            admin.setName("Admin User");
             admin.setUsername(adminEmail);
             admin.setPassword(passwordEncoder.encode(adminPassword));
             admin.setRole(AccountRole.Administrator);

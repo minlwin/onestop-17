@@ -1,4 +1,6 @@
+import { toast } from "@/components/ui/toast"
 import { isRedirectError } from "next/dist/client/components/redirect-error"
+import { title } from "node:process"
 
 export { cn } from "cn"
 
@@ -12,5 +14,10 @@ export async function executeAction(action : () => Promise<void>) {
         }
 
         console.log(e)
+        
+        toast.add({
+            title : "Message",
+            description : e.message || "Unknown error"
+        })
     }
 }

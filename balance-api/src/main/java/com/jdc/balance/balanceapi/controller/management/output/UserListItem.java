@@ -26,7 +26,7 @@ public record UserListItem(
     public static void select(CriteriaQuery<UserListItem> cq, CriteriaBuilder cb, Root<Member> root) {
         cq.select(cb.construct(UserListItem.class,
                 root.get(Member_.id),
-                root.get(Member_.name),
+                root.get(Member_.account).get(Account_.name),
                 root.get(Member_.phone),
                 root.get(Member_.email),
                 root.get(Member_.status),

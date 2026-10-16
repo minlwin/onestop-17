@@ -1,15 +1,10 @@
 import 'server-only'
 
 import { ActivationForm, AuthResult, ModificationResult, SignInForm, SignUpForm } from "@/lib/types";
+import { publicRequest } from '..';
 
 export async function signIn(form: SignInForm) : Promise<AuthResult> {
-    return {
-        name : "John Doe",
-        email : "johndoe@example.com",
-        role : "Partner",
-        accessToken: "dummytoken",
-        refreshToken: "dummytoken"
-    }
+    return await publicRequest("anonymous/auth/generate", form, {method : "POST"})
 }
 
 export async function signUp(form: SignUpForm) : Promise<ModificationResult<string>> {

@@ -1,6 +1,8 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
@@ -34,7 +36,7 @@ public record SubscriptionListItem(
     public static void select(CriteriaQuery<SubscriptionListItem> cq, CriteriaBuilder cb, Root<Subscription> root) {
         cq.select(cb.construct(SubscriptionListItem.class,
             root.get(Subscription_.id),
-            root.get(Subscription_.company).get(Company_.partner).get(Partner_.name),
+            root.get(Subscription_.company).get(Company_.partner).get(Partner_.account).get(Account_.name),
             root.get(Subscription_.company).get(Company_.partner).get(Partner_.phone),
             root.get(Subscription_.company).get(Company_.partner).get(Partner_.email),
             root.get(Subscription_.company).get(Company_.name),

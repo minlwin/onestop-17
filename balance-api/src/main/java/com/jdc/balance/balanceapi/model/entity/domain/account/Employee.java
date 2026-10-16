@@ -24,9 +24,6 @@ public class Employee extends AbstractEntity {
     private Company company;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String phone;
 
     @Column(nullable = false)

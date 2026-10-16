@@ -28,7 +28,7 @@ public record RegistrationDetails(
     public static RegistrationDetails from(Company entity) {
         return  new RegistrationDetails(
                 entity.getId(),
-                entity.getPartner().getName(),
+                entity.getPartner().getAccount().getName(),
                 entity.getPartner().getPhone(),
                 entity.getPartner().getEmail(),
                 entity.getPartner().getPosition(),

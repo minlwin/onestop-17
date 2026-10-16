@@ -2,7 +2,6 @@ import 'server-only'
 import { AuthResult } from '../types';
 import { cookies } from 'next/headers';
 import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
-import { env } from 'process';
 
 const ACCESS_TOKEN = 'app.token.access'
 const REFRESH_TOKEN = 'app.token.refresh'

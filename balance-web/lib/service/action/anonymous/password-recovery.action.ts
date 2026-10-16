@@ -1,7 +1,7 @@
 'use server'
 
 import { ForgotPasswordForm, ResetPasswordForm } from "@/lib/types";
-import * as client from "@/lib/service/client/password-recovery.client"
+import * as client from "@/lib/service/client/anonymous/password-recovery.client"
 import { redirect } from "next/navigation";
 
 export async function sendRequest(form: ForgotPasswordForm) {

@@ -36,7 +36,7 @@ public record SubscriptionDetails(
     public static SubscriptionDetails from(Subscription entity) {
         return new SubscriptionDetails(
                 entity.getId(),
-                entity.getCompany().getPartner().getName(),
+                entity.getCompany().getPartner().getAccount().getName(),
                 entity.getCompany().getPartner().getPhone(),
                 entity.getCompany().getPartner().getEmail(),
                 entity.getCompany().getName(),

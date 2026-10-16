@@ -22,8 +22,6 @@ public class Member extends AbstractEntity {
     private Account account;
 
     @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
     private String phone;
     @Column(nullable = false)
     private String email;

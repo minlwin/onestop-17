@@ -1,6 +1,8 @@
 package com.jdc.balance.balanceapi.controller.management.input;
 
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
@@ -39,7 +41,7 @@ public record SubscriptionSearch(
             var param = keyword.toLowerCase().concat("%");
             params.add(cb.or(
                     cb.like(cb.lower(root.get(Subscription_.company).get(Company_.name)), param),
-                    cb.like(cb.lower(root.get(Subscription_.company).get(Company_.partner).get(Partner_.name)), param)
+                    cb.like(cb.lower(root.get(Subscription_.company).get(Company_.partner).get(Partner_.account).get(Account_.name)), param)
             ));
         }
 

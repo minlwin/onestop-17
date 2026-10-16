@@ -1,9 +1,7 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
 import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
+import com.jdc.balance.balanceapi.model.entity.domain.account.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -27,7 +25,7 @@ public record RegistrationListItem(
     public static void select(CriteriaBuilder cb, CriteriaQuery<RegistrationListItem> cq, Root<Company> root) {
         cq.select(cb.construct(RegistrationListItem.class,
                 root.get(Company_.id),
-                root.get(Company_.partner).get(Partner_.name),
+                root.get(Company_.partner).get(Partner_.account).get(Account_.name),
                 root.get(Company_.partner).get(Partner_.phone),
                 root.get(Company_.partner).get(Partner_.email),
                 root.get(Company_.partner).get(Partner_.position),

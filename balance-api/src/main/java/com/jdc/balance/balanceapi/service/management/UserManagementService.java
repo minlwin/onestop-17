@@ -56,13 +56,13 @@ public class UserManagementService {
     public ModificationResult<UUID> create(UserForm form) {
 
         var account = new Account();
+        account.setName(form.name());
         account.setUsername(form.email());
         account.setRole(AccountRole.Management);
         account = accountRepo.save(account);
 
         var member = new Member();
         member.setAccount(account);
-        member.setName(form.name());
         member.setPhone(form.phone());
         member.setEmail(form.email());
         member.setStatus(UserStatus.Pending);

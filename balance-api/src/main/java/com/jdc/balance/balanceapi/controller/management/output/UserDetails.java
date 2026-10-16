@@ -25,7 +25,7 @@ public record UserDetails(
     public static UserDetails from(Member entity) {
         return  new UserDetails(
                 entity.getId(),
-                entity.getName(),
+                entity.getAccount().getName(),
                 entity.getPhone(),
                 entity.getEmail(),
                 entity.getStatus(),

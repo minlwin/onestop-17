@@ -1,10 +1,7 @@
 package com.jdc.balance.balanceapi.controller.management.input;
 
 import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Member;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Member_;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
+import com.jdc.balance.balanceapi.model.entity.domain.account.*;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription_;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
@@ -39,7 +36,7 @@ public record UserSearch(
         if(StringUtils.hasLength(keyword)) {
             var param = keyword.toLowerCase().concat("%");
             params.add(cb.or(
-                    cb.like(cb.lower(root.get(Member_.name)), param),
+                    cb.like(cb.lower(root.get(Member_.account).get(Account_.name)), param),
                     cb.like(cb.lower(root.get(Member_.phone)), param),
                     cb.like(cb.lower(root.get(Member_.email)), param)
             ));
