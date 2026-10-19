@@ -1,32 +1,20 @@
 import { ModificationResult, PaymentInfo, PaymentInfoForm } from "@/lib/types";
+import { secureRequest } from "..";
+
+const BASE_API = "management/master/payments"
 
 export async function findAll() : Promise<PaymentInfo[]> {
-    return [ dummyInfo ]
+    return await secureRequest(BASE_API)
 }
 
 export async function findById(id : any) : Promise<PaymentInfo> {
-    return dummyInfo
+    return await secureRequest(`${BASE_API}/${id}`)
 }
 
 export async function create(form : PaymentInfoForm) : Promise<ModificationResult<number>> {
-    return {
-        result : 1
-    }
+    return await secureRequest(BASE_API, form, {method : "POST"})
 }
 
 export async function update(id : any, form : PaymentInfoForm) : Promise<ModificationResult<number>> {
-    return {
-        result : id
-    }
-}
-
-const dummyInfo: PaymentInfo = {
-    id: 1,
-    provider: "KBZ Pay",
-    accountNo: "09782003098",
-    accountName: "U Zaw Min Lwin",
-    createdAt : "2026-10-01 10:00",
-    createdBy : "John Doe",
-    modifiedAt : "",
-    modifiedBy: ""
+    return await secureRequest(`${BASE_API}/${id}`, form, { method : "PUT" })
 }

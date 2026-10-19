@@ -6,8 +6,10 @@ import { ActivationForm, activationSchema } from "@/lib/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserCheck } from "lucide-react"
 import { useForm } from "react-hook-form"
+import * as action from "@/lib/service/action/anonymous/auth.action"
+import { executeAction } from "@/lib/utils"
 
-export default function ActivationComponent() {
+export default function ActivationComponent({id} : {id : string}) {
 
     const form = useForm({
         resolver: zodResolver(activationSchema),
@@ -18,7 +20,9 @@ export default function ActivationComponent() {
     })
 
     function activateAccount(form : ActivationForm) {
-
+        executeAction(async () => {
+            action.activate(id, form)
+        })
     }
 
     return (

@@ -7,7 +7,9 @@ import com.jdc.balance.balanceapi.controller.management.output.UserDetails;
 import com.jdc.balance.balanceapi.controller.management.output.UserListItem;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
 import com.jdc.balance.balanceapi.service.management.UserManagementService;
+import com.jdc.balance.balanceapi.utils.listener.AccountCreationEvent;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,20 +22,23 @@ import java.util.UUID;
 public class UserManagementApi {
 
     private final UserManagementService service;
+    private final ApplicationEventPublisher eventPublisher;
 
     @GetMapping
     List<UserListItem> search(UserSearch form) {
         return service.search(form);
     }
 
-    @GetMapping("id")
+    @GetMapping("{id}")
     UserDetails findById(@PathVariable String id) {
         return service.findById(id);
     }
 
     @PostMapping
     ModificationResult<UUID> create(@Validated @RequestBody UserForm form) {
-        return service.create(form);
+        var result = service.create(form);
+        eventPublisher.publishEvent(new AccountCreationEvent(result.result()));
+        return  result;
     }
 
     @PutMapping("{id}")

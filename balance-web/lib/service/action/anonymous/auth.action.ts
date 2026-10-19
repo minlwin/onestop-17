@@ -18,8 +18,8 @@ export async function signUp(form: SignUpForm) {
     redirect(`/activate?${params.toString()}`)
 }
 
-export async function activate(form : ActivationForm) {
-    const response = await client.activate(form)
+export async function activate(id: string, form : ActivationForm) {
+    const response = await client.activate(id, form)
     const params = new URLSearchParams
     params.append("message", response.result)
     redirect(`/signin?${params.toString()}`)

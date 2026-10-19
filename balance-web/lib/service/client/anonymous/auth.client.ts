@@ -13,8 +13,6 @@ export async function signUp(form: SignUpForm) : Promise<ModificationResult<stri
     }
 }
 
-export async function activate(form : ActivationForm) : Promise<ModificationResult<string>> {
-    return {
-        result: "Your account has been activated successfully. Please sign in to your account."
-    }
+export async function activate(id: string, form : ActivationForm) : Promise<ModificationResult<string>> {
+    return await publicRequest(`anonymous/activate/${id}`, form, {method : "POST"})
 }

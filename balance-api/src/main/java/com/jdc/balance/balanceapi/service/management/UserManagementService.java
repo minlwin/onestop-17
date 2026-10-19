@@ -13,9 +13,8 @@ import com.jdc.balance.balanceapi.model.entity.domain.account.Member;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Member_;
 import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
 import com.jdc.balance.balanceapi.model.repo.account.MemberRepo;
-import com.jdc.balance.balanceapi.utils.listener.AccountCreationEvent;
+import com.jdc.balance.balanceapi.utils.exceptions.BalanceAppException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +30,6 @@ public class UserManagementService {
 
     private final AccountRepo accountRepo;
     private final MemberRepo memberRepo;
-    private final ApplicationEventPublisher eventPublisher;
 
     public List<UserListItem> search(UserSearch form) {
         return memberRepo.search(cb -> {
@@ -55,6 +53,10 @@ public class UserManagementService {
     @Transactional
     public ModificationResult<UUID> create(UserForm form) {
 
+        if(accountRepo.findOneByUsername(form.email()).isPresent()) {
+            throw new BalanceAppException("Email (%s) is already used by other user.".formatted(form.email()));
+        }
+
         var account = new Account();
         account.setName(form.name());
         account.setUsername(form.email());
@@ -68,9 +70,6 @@ public class UserManagementService {
         member.setStatus(UserStatus.Pending);
         member.setAssignDate(form.assignDate());
         memberRepo.save(member);
-
-        eventPublisher.publishEvent(new AccountCreationEvent(account.getId()));
-
         return new ModificationResult<>(account.getId());
     }
 
