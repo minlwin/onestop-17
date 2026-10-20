@@ -1,10 +1,7 @@
 package com.jdc.balance.balanceapi.model.entity.domain.account;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,6 +15,7 @@ public class Partner extends AbstractEntity {
     @Id
     private UUID id;
 
+    @MapsId
     @OneToOne(optional = false)
     private Account account;
 

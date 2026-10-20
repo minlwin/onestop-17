@@ -7,7 +7,9 @@ import org.springframework.security.core.AuthenticationException;
 @Getter
 public class AuthTokenInvalidException extends AuthenticationException {
 
-    public AuthTokenInvalidException(@Nullable String msg) {
+    private static final long serialVersionUID = 1L;
+
+	public AuthTokenInvalidException(@Nullable String msg) {
         super(msg);
     }
 

@@ -5,7 +5,9 @@ import org.springframework.security.core.AuthenticationException;
 
 public class AuthTokenAccessExpiredException extends AuthenticationException {
 
-    public AuthTokenAccessExpiredException(@Nullable String msg, Throwable cause) {
+    private static final long serialVersionUID = 1L;
+
+	public AuthTokenAccessExpiredException(@Nullable String msg, Throwable cause) {
         super(msg, cause);
     }
 }

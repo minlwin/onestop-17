@@ -1,18 +1,19 @@
 package com.jdc.balance.balanceapi.service.anonymous;
 
-import com.jdc.balance.balanceapi.controller.anonymous.input.TokenGenerateForm;
-import com.jdc.balance.balanceapi.controller.anonymous.input.TokenRefreshForm;
-import com.jdc.balance.balanceapi.controller.anonymous.ouput.TokenResponse;
-import com.jdc.balance.balanceapi.model.entity.consts.AccountRole;
-import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
-import com.jdc.balance.balanceapi.utils.security.AuthTokenProvider;
-import lombok.RequiredArgsConstructor;
+import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
+import com.jdc.balance.balanceapi.controller.anonymous.input.TokenGenerateForm;
+import com.jdc.balance.balanceapi.controller.anonymous.input.TokenRefreshForm;
+import com.jdc.balance.balanceapi.controller.anonymous.ouput.TokenResponse;
+import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
+import com.jdc.balance.balanceapi.utils.security.AuthTokenProvider;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

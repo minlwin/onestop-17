@@ -1,11 +1,10 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
-import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
 
 public record RegistrationDetails(
         UUID id,

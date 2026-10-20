@@ -1,20 +1,21 @@
 package com.jdc.balance.balanceapi.controller.management.input;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.util.StringUtils;
+
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription_;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import org.springframework.util.StringUtils;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public record SubscriptionSearch(
         SubscriptionStatus status,

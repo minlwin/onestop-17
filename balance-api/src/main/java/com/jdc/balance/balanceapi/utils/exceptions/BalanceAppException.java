@@ -2,7 +2,9 @@ package com.jdc.balance.balanceapi.utils.exceptions;
 
 public class BalanceAppException extends RuntimeException{
 
-    public BalanceAppException(String message) {
+    private static final long serialVersionUID = 1L;
+
+	public BalanceAppException(String message) {
         super(message);
     }
 

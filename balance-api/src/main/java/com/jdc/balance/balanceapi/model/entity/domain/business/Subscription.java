@@ -1,19 +1,24 @@
 package com.jdc.balance.balanceapi.model.entity.domain.business;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PaymentInfo;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity

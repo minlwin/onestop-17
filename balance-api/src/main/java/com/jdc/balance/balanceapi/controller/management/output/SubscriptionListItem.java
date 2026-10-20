@@ -1,21 +1,21 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription_;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo_;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record SubscriptionListItem(
         UUID id,

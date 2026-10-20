@@ -1,19 +1,20 @@
 package com.jdc.balance.balanceapi.controller.management.input;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.util.StringUtils;
+
 import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Partner_;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import org.springframework.util.StringUtils;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public record RegistrationSearch(
     RegistrationStatus status,

@@ -1,14 +1,14 @@
 package com.jdc.balance.balanceapi.model.entity.domain.business;
 
+import java.math.BigDecimal;
+
 import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.LedgerEntryItemPk;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Data
 @Entity

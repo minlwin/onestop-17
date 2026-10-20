@@ -1,17 +1,17 @@
 package com.jdc.balance.balanceapi.controller.management.output;
 
-import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Member;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Member_;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account_;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Member;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Member_;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 public record UserListItem(
         UUID id,

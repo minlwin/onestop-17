@@ -55,7 +55,7 @@ public class SubscriptionManagementService {
             return cq;
         };
 
-        return null;
+        return subscriptionRepo.search(queryFunc, countFunc, page, size);
     }
 
     public SubscriptionDetails findById(String id) {

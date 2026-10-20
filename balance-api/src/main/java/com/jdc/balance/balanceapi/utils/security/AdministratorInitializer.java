@@ -1,10 +1,7 @@
 package com.jdc.balance.balanceapi.utils.security;
 
-import com.jdc.balance.balanceapi.model.entity.consts.AccountRole;
-import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
-import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
-import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -12,7 +9,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import com.jdc.balance.balanceapi.model.entity.consts.AccountRole;
+import com.jdc.balance.balanceapi.model.entity.domain.account.Account;
+import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
