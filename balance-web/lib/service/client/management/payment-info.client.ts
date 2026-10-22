@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { ModificationResult, PaymentInfo, PaymentInfoForm } from "@/lib/types";
 import { secureRequest } from "..";
 

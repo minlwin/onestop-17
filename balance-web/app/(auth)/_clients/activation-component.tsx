@@ -21,7 +21,7 @@ export default function ActivationComponent({id} : {id : string}) {
 
     function activateAccount(form : ActivationForm) {
         executeAction(async () => {
-            action.activate(id, form)
+            await action.activate(id, form)
         })
     }
 

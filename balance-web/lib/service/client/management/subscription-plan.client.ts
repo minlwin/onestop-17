@@ -1,3 +1,4 @@
+import 'server-only'
 import { ModificationResult, SubscriptionPlan, SubscriptionPlanForm } from "@/lib/types";
 import { secureRequest } from "..";
 

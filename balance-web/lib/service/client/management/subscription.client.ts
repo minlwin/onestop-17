@@ -1,4 +1,5 @@
-import { ModificationResult, PageInfo, PageResult, PageSearch, SubscriptionDetails, SubscriptionListItem, SubscriptionPageSearch, SubscriptionSearch, SubscriptionStatusForm } from "@/lib/types";
+import 'server-only'
+import { ModificationResult, PageResult, SubscriptionDetails, SubscriptionListItem, SubscriptionPageSearch, SubscriptionStatusForm } from "@/lib/types";
 import { secureRequest } from "..";
 
 const BASE_API = "management/subscriptions"

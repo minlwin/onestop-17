@@ -18,7 +18,7 @@ export async function publicRequest(
     
     if(!response.ok) {
         const errorMessages = await response.json()
-        throw new Error(errorMessages)
+        throw new Error(JSON.stringify(errorMessages))
     }
 
     return await response.json()
@@ -76,8 +76,8 @@ export async function secureRequest(
     }
 
     if(!response.ok) {
-        const errorMessages = await response.json()
-        throw new Error(errorMessages)
+        const errorMessages:string[] = await response.json()
+        throw new Error(JSON.stringify(errorMessages))
     }
 
     return await response.json()

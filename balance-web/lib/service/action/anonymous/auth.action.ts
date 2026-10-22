@@ -12,10 +12,10 @@ export async function signIn(form: SignInForm) {
 }
 
 export async function signUp(form: SignUpForm) {
-    const response = await client.signUp(form)
+    await client.signUp(form)
     const params = new URLSearchParams
-    params.append("message", response.result)
-    redirect(`/activate?${params.toString()}`)
+    params.append("message", "Your account has been created. Please check email and activate your account.")
+    redirect(`/?${params.toString()}`)
 }
 
 export async function activate(id: string, form : ActivationForm) {

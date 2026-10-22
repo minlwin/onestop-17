@@ -1,3 +1,5 @@
+'use server'
+
 import { PaymentInfoForm } from "@/lib/types";
 
 import * as client from "@/lib/service/client/management/payment-info.client"

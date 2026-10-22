@@ -24,9 +24,9 @@ export default function PaymentInfoEditComponent({info} : {info? : PaymentInfo})
     function save(form : PaymentInfoForm) {
         executeAction(async () => {
             if(info) {
-                action.update(info.id, form)
+                await action.update(info.id, form)
             } else {
-                action.create(form)
+                await action.create(form)
             }
         })
     }

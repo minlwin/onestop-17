@@ -14,7 +14,9 @@ export default async function PaymentInfoDetailsPage(props : PageProps<'/managem
     const details = await client.findById(id)
 
     return (
-        <ManagementTemplate page="Deatils">
+        <ManagementTemplate page="Deatils" links={[
+            {name : "Payment Masger", route : "/management/master/payments"}
+        ]}>
             <Card>
                 <CardHeader>
                     <CardTitle className="flex justify-between">

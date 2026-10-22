@@ -4,6 +4,7 @@ import { SubMenuItem, SystemName } from "@/lib/types"
 import { Separator } from "@base-ui/react"
 import Link from "next/link"
 import React, { Fragment } from "react"
+import SignOutButton from "./signout-button"
 
 type PageTemplateProps = {
     system : SystemName
@@ -15,7 +16,7 @@ type PageTemplateProps = {
 export default function PageTemplate({system, page, links, children} : PageTemplateProps) {
     return (
         <>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+            <header className="flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
                 <div className="flex items-center gap-2 px-4">
                     <SidebarTrigger className={'-ml-1'} />
                     <Separator orientation="vertical"/>
@@ -43,6 +44,10 @@ export default function PageTemplate({system, page, links, children} : PageTempl
                         </BreadcrumbList>
                     </Breadcrumb>
                 </div>
+
+                <nav className="me-4">
+                    <SignOutButton />
+                </nav>
             </header>
 
             <main className="mx-4 space-y-4">

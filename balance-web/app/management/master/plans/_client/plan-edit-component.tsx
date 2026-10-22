@@ -51,9 +51,9 @@ export default function PlanEditComponent({plan} : {plan? : SubscriptionPlan}) {
     function save(form: SubscriptionPlanForm) {
         executeAction(async () => {
             if(plan) {
-                action.update(plan.id, form)
+                await action.update(plan.id, form)
             } else {
-                action.create(form)
+                await action.create(form)
             }
         })
     }

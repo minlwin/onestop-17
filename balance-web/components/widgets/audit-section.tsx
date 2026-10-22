@@ -1,3 +1,4 @@
+import { formatDateTime } from "@/lib/utils";
 import Info from "./info";
 import SectionTitle from "./section-title";
 
@@ -14,9 +15,9 @@ export default function AuditSection({createdBy, createdAt, modifiedBy, modified
 
             <section className="grid grid-cols-4 gap-4">
                 <Info label="Created By" value={createdBy} /> 
-                <Info label="Created At" value={createdAt} /> 
+                <Info label="Created At" value={formatDateTime(createdAt)} /> 
                 <Info label="Modified By" value={modifiedBy || 'Not yet'} /> 
-                <Info label="Modified At" value={modifiedAt || 'Not yet'} /> 
+                <Info label="Modified At" value={formatDateTime(modifiedAt) || 'Not yet'} /> 
             </section>
         </section>
 

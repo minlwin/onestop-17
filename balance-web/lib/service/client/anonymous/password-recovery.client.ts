@@ -1,6 +1,7 @@
+import 'server-only'
+
 import { ModificationResult } from '@/lib/types';
 import { ForgotPasswordForm, ResetPasswordForm } from '@/lib/types/anonymous/auth.schema';
-import 'server-only'
 
 export async function sendRequest(form: ForgotPasswordForm) : Promise<ModificationResult<string>> {
     // Call backend API

@@ -24,7 +24,7 @@ export default function UpdateStatusButton({id} : {id : string}) {
 
     function update(updateForm : SubscriptionStatusForm) {
         executeAction(async () => {
-            action.updateStatus(id, updateForm)
+            await action.updateStatus(id, updateForm)
         })
         form.reset()
         setShow(false)

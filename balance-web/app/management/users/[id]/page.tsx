@@ -7,6 +7,7 @@ import ManagementTemplate from "@/components/widgets/pages/management-template";
 import * as client from "@/lib/service/client/management/user-rest.client"
 import { Calendar, User, UserX } from "lucide-react";
 import RetirementComponent from "./_client/retirement-component";
+import { formatDateTime } from "@/lib/utils";
 
 
 export default async function UserDetailsPage(props : PageProps<'/management/users/[id]'>) {
@@ -34,7 +35,7 @@ export default async function UserDetailsPage(props : PageProps<'/management/use
                         <ProfileItem label="Phone" value={result.phone} />
                         <ProfileItem label="Email" value={result.email} />
                         <ProfileItem label="Assign Date" value={result.assignDate} className="col-start-1" />
-                        <ProfileItem label="Activated At" value={result.activatedAt} />
+                        <ProfileItem label="Activated At" value={formatDateTime(result.activatedAt)} />
                         <ProfileItem label="Retired At" value={result.retiredAt || "Not yet"} />
                         <ProfileItem label="Contract For this Month" value={String(result.contractForThisMonth)} />
                         <ProfileItem label="Contract Total" value={String(result.contractTotal)} />

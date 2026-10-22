@@ -7,6 +7,7 @@ import ManagementTemplate from "@/components/widgets/pages/management-template";
 
 import * as client from "@/lib/service/client/management/payment-info.client"
 import { PaymentInfo } from "@/lib/types";
+import { formatDateTime } from "@/lib/utils";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
@@ -57,8 +58,8 @@ function PaymentInfoList({ list } : { list : PaymentInfo []}) {
                                 <TableCell>{item.provider}</TableCell>
                                 <TableCell>{item.accountNo}</TableCell>
                                 <TableCell>{item.accountName}</TableCell>
-                                <TableCell>{item.createdAt}</TableCell>
-                                <TableCell>{item.modifiedAt}</TableCell>
+                                <TableCell>{formatDateTime(item.createdAt)}</TableCell>
+                                <TableCell>{formatDateTime(item.modifiedAt)}</TableCell>
                                 <TableCell>
                                     <DetailsLink route={`/management/master/payments/${item.id}`} />
                                 </TableCell>

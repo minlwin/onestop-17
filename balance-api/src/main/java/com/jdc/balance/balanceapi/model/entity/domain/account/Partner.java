@@ -20,14 +20,11 @@ public class Partner extends AbstractEntity {
     private Account account;
 
     @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
     private String email;
 
     @OneToOne(mappedBy = "partner")
     private Company company;
 
-    @Column(nullable = false)
+    private String phone;
     private String position;
 }

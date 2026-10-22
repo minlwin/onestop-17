@@ -1,3 +1,5 @@
+'use server'
+
 import * as client from "@/lib/service/client/management/subscription.client"
 import { ModificationResult, PageResult, SubscriptionListItem, SubscriptionPageSearch, SubscriptionStatusForm } from "@/lib/types";
 

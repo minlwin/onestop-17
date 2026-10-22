@@ -2,6 +2,9 @@ package com.jdc.balance.balanceapi.service.anonymous;
 
 import com.jdc.balance.balanceapi.controller.anonymous.input.ActivationForm;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
+import com.jdc.balance.balanceapi.model.entity.consts.AccountRole;
+import com.jdc.balance.balanceapi.model.entity.consts.UserStatus;
+import com.jdc.balance.balanceapi.model.repo.account.MemberRepo;
 import com.jdc.balance.balanceapi.model.repo.account.OtpCheckHistoryRepo;
 import com.jdc.balance.balanceapi.utils.exceptions.BalanceAppException;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +22,7 @@ import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
 public class AccountActivationService {
 
     private final OtpCheckHistoryRepo historyRepo;
+    private final MemberRepo memberRepo;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(noRollbackFor = BalanceAppException.class)
@@ -42,6 +46,12 @@ public class AccountActivationService {
         var account = history.getAccount();
         account.setPassword(passwordEncoder.encode(form.password()));
         account.setActivatedAt(LocalDateTime.now());
+
+        if(account.getRole() == AccountRole.Management) {
+            var member = safeCall(memberRepo.findById(account.getId()))
+                    .apply("Member").apply("id").apply(account.getId().toString());
+            member.setStatus(UserStatus.Activated);
+        }
 
         return new ModificationResult<>("Your account has been activated. Please login again.");
     }

@@ -1,6 +1,7 @@
+import "server-only"
+
 import { ModificationResult } from "@/lib/types";
 import { RetirementForm, UserDetails, UserForm, UserListItem, UserSearch } from "@/lib/types/management/user.model";
-import "server-only"
 import { secureRequest } from "..";
 
 const BASE_URL = "management/users"

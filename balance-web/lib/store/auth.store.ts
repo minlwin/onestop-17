@@ -1,4 +1,5 @@
 import 'server-only'
+
 import { AuthResult } from '../types';
 import { cookies } from 'next/headers';
 import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
@@ -40,5 +41,10 @@ export async function getUserInfo() {
     if(value) {
         return JSON.parse(value)
     }
+}
+
+export async function signOut() {
+    const cookieStore = await cookies()
+    cookieStore.getAll().forEach(cookie => cookieStore.delete(cookie))
 }
 

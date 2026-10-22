@@ -1,3 +1,5 @@
+'use server'
+
 import * as client from "@/lib/service/client/management/registration.client"
 import { ModificationResult, PageResult, RegistrationListItem, RegistrationPageSearch, RegistrationStatusForm } from "@/lib/types";
 

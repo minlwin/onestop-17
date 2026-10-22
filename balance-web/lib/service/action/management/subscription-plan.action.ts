@@ -1,3 +1,5 @@
+'use server'
+
 import { SubscriptionPlanForm } from "@/lib/types";
 
 import * as client from "@/lib/service/client/management/subscription-plan.client"

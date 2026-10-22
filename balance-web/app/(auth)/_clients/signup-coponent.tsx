@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { UserPlus } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
+import * as action from "@/lib/service/action/anonymous/auth.action"
+import { executeAction } from "@/lib/utils"
 
 export default function SignUpComponent() {
 
@@ -19,7 +21,9 @@ export default function SignUpComponent() {
     })
 
     function signUp(form : SignUpForm) {
-        console.log(form)
+        executeAction(async () => {
+            await action.signUp(form)
+        })
     }
 
     return (

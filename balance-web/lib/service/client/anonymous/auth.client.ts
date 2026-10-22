@@ -8,9 +8,7 @@ export async function signIn(form: SignInForm) : Promise<AuthResult> {
 }
 
 export async function signUp(form: SignUpForm) : Promise<ModificationResult<string>> {
-    return {
-        result: "Your account has been created successfully. Please activate your account."
-    }
+    return await publicRequest("anonymous/signup", form, {method : "POST"})
 }
 
 export async function activate(id: string, form : ActivationForm) : Promise<ModificationResult<string>> {

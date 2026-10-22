@@ -1,4 +1,5 @@
-import { ModificationResult, PageInfo, PageResult, RegistrationDetails, RegistrationListItem, RegistrationPageSearch, RegistrationStatusForm } from "@/lib/types"
+import 'server-only'
+import { ModificationResult, PageResult, RegistrationDetails, RegistrationListItem, RegistrationPageSearch, RegistrationStatusForm } from "@/lib/types"
 import { secureRequest } from ".."
 
 const BASE_API = "management/registrations"

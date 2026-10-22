@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import NoSearchResult from "@/components/widgets/no-search-result";
 import ManagementTemplate from "@/components/widgets/pages/management-template";
 import { UserListItem, UserSearch, userStatusList } from "@/lib/types/management/user.model";
-import { executeAction } from "@/lib/utils";
+import { executeAction, formatDateTime } from "@/lib/utils";
 import { ChevronRight, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -68,7 +68,7 @@ function ResultTable({ list } : { list : UserListItem [] }) {
                             <TableCell>{item.email}</TableCell>
                             <TableCell>{item.status}</TableCell>
                             <TableCell>{item.assignDate}</TableCell>
-                            <TableCell>{item.activatedAt}</TableCell>
+                            <TableCell>{formatDateTime(item.activatedAt)}</TableCell>
                             <TableCell>{item.retiredAt}</TableCell>
                             <TableCell>
                                 <DetailsLink route={`/management/users/${item.id}`} />
