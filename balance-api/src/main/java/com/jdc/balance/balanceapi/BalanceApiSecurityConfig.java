@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
 
 @Configuration
+@EnableMethodSecurity
 public class BalanceApiSecurityConfig {
 
     @Bean
@@ -28,7 +30,8 @@ public class BalanceApiSecurityConfig {
         http.authorizeHttpRequests(req -> {
             req.requestMatchers("/anonymous/**").permitAll();
             req.requestMatchers("/management/**").hasAnyAuthority(AccountRole.Administrator.name(), AccountRole.Management.name());
-            req.requestMatchers("/partner/**").hasAnyAuthority(AccountRole.Partner.name(), AccountRole.Employee.name());
+            req.requestMatchers("/partner/**").hasAuthority(AccountRole.Partner.name());
+            req.requestMatchers("/member/**").hasAnyAuthority(AccountRole.Partner.name(), AccountRole.Employee.name());
             req.anyRequest().denyAll();
         });
 

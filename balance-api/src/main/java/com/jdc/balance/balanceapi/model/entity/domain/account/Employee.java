@@ -35,4 +35,5 @@ public class Employee extends AbstractEntity {
     private LocalDate assignDate;
     private LocalDate resignDate;
 
+    private boolean disabled;
 }

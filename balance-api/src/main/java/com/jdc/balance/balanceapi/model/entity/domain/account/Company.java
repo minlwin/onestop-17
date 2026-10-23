@@ -41,7 +41,7 @@ public class Company extends AbstractEntity {
 
     private LocalDateTime approvedAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private PlanInfo plan;
 
     private LocalDate planExpiration;
