@@ -8,6 +8,11 @@ import { redirect } from "next/navigation";
 export async function signIn(form: SignInForm) {
     const response = await client.signIn(form)
     await store.setAuthResult(response)
+
+    if(response.role === 'Partner') {
+        
+    }
+
     redirect(getRoute(response.role))
 }
 

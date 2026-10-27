@@ -40,6 +40,7 @@ public class Subscription extends AbstractEntity {
     @ManyToOne(optional = false)
     private PaymentInfo payment;
 
+    @Column(nullable = false)
     private String paymentSlip;
 
     @Column(nullable = false)

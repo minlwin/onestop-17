@@ -4,6 +4,12 @@ export * from "@/lib/types/management/user.model"
 export * from "@/lib/types/management/master.model"
 export * from "@/lib/types/management/registrations.model"
 export * from "@/lib/types/management/subscriptions.model"
+export * from "@/lib/types/member/company-profile.model"
+export * from "@/lib/types/member/employee.model"
+export * from "@/lib/types/member/ledger.model"
+export * from "@/lib/types/member/member-state.model"
+export * from "@/lib/types/member/registration.model"
+export * from "@/lib/types/member/subscription.model"
 
 export interface ModificationResult<T> {
     result : T

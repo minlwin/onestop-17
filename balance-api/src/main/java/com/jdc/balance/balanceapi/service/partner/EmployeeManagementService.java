@@ -13,6 +13,7 @@ import com.jdc.balance.balanceapi.model.entity.domain.account.Employee_;
 import com.jdc.balance.balanceapi.model.repo.account.AccountRepo;
 import com.jdc.balance.balanceapi.model.repo.account.CompanyRepo;
 import com.jdc.balance.balanceapi.model.repo.account.EmployeeRepo;
+import com.jdc.balance.balanceapi.model.repo.business.LedgerEntryRepo;
 import com.jdc.balance.balanceapi.service.LoginUserService;
 import com.jdc.balance.balanceapi.utils.exceptions.BalanceAppException;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class EmployeeManagementService {
     private final EmployeeRepo employeeRepo;
     private final AccountRepo accountRepo;
     private final CompanyRepo companyRepo;
+    private final LedgerEntryRepo ledgerEntryRepo;
 
     private final LoginUserService loginUserService;
 
@@ -55,7 +57,10 @@ public class EmployeeManagementService {
 
     @PreAuthorize("hasAuthority('Partner')")
     public EmployeeDetails findById(String id) {
-        return null;
+        var details = safeCall(employeeRepo.findById(UUID.fromString(id)).map(EmployeeDetails::from))
+                .apply("Employee").apply("id").apply(id);
+        var entryCount = ledgerEntryRepo.findCountForEmployee(details.id());
+        return details.withEntryCount(entryCount);
     }
 
     @Transactional

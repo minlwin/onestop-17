@@ -1,5 +1,7 @@
 package com.jdc.balance.balanceapi.controller.partner;
 
+import com.jdc.balance.balanceapi.controller.management.output.PaymentInfoDto;
+import com.jdc.balance.balanceapi.controller.management.output.PlanInfoDto;
 import com.jdc.balance.balanceapi.controller.management.output.SubscriptionListItem;
 import com.jdc.balance.balanceapi.controller.partner.input.SubscriptionForm;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
@@ -29,5 +31,15 @@ public class SubscriptionApi {
     @PostMapping
     ModificationResult<UUID> subscribe(@Validated SubscriptionForm form) {
         return service.subscribe(form);
+    }
+
+    @GetMapping("plans")
+    List<PlanInfoDto> getPlans() {
+        return service.getPlans();
+    }
+
+    @GetMapping("payments")
+    List<PaymentInfoDto> getPaymentInfos() {
+        return service.getPaymentInfos();
     }
 }
