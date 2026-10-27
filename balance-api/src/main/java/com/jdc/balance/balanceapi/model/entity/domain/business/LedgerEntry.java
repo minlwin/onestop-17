@@ -1,7 +1,6 @@
 package com.jdc.balance.balanceapi.model.entity.domain.business;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
-import com.jdc.balance.balanceapi.model.entity.consts.EntryType;
 import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.EnterBy;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,13 +22,13 @@ public class LedgerEntry extends AbstractEntity {
     private Ledger ledger;
 
     @Column(nullable = false)
-    private EntryType type;
-
-    @Column(nullable = false)
     private LocalDate issueDate;
 
     @OneToMany(mappedBy = "entry")
     private List<LedgerEntryItem> items;
+
+    @Column(nullable = false)
+    private String particular;
 
     private EnterBy enterBy;
 }
