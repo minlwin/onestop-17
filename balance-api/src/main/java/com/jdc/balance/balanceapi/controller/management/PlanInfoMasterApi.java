@@ -3,7 +3,7 @@ package com.jdc.balance.balanceapi.controller.management;
 import com.jdc.balance.balanceapi.controller.management.input.PlanInfoForm;
 import com.jdc.balance.balanceapi.controller.management.output.PlanInfoDto;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
-import com.jdc.balance.balanceapi.service.management.PlanInfoMasterService;
+import com.jdc.balance.balanceapi.service.management.PlanInfoManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("management/master/plans")
 public class PlanInfoMasterApi {
 
-    private final PlanInfoMasterService service;
+    private final PlanInfoManagementService service;
 
     @GetMapping
     List<PlanInfoDto> findAll() {
@@ -29,11 +29,13 @@ public class PlanInfoMasterApi {
 
     @PostMapping
     ModificationResult<Integer> create(@Validated @RequestBody PlanInfoForm form) {
-        return service.create(form);
+        var dto = service.create(form);
+        return  new ModificationResult<>(dto.id());
     }
 
     @PutMapping("{id}")
     ModificationResult<Integer> update(@PathVariable int id, @Validated @RequestBody PlanInfoForm form) {
-        return service.update(id, form);
+        var dto = service.update(id, form);
+        return new ModificationResult<>(dto.id());
     }
 }

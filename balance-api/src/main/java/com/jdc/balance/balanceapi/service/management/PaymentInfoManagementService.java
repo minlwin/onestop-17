@@ -2,10 +2,12 @@ package com.jdc.balance.balanceapi.service.management;
 
 import com.jdc.balance.balanceapi.controller.management.input.PaymentInfoForm;
 import com.jdc.balance.balanceapi.controller.management.output.PaymentInfoDto;
-import com.jdc.balance.balanceapi.model.dto.ModificationResult;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PaymentInfo;
 import com.jdc.balance.balanceapi.model.repo.master.PaymentInfoRepo;
+import com.jdc.balance.balanceapi.service.commons.PaymentInfoMasterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,21 +18,23 @@ import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class PaymentInfoMasterService {
+public class PaymentInfoManagementService {
 
     private final PaymentInfoRepo repo;
+    private final PaymentInfoMasterService masterService;
 
     public List<PaymentInfoDto> findAll() {
-        return repo.findAll().stream().map(PaymentInfoDto::from).toList();
+        return masterService.findAll();
     }
 
     public PaymentInfoDto findById(int id) {
-        return safeCall(repo.findById(id).map(PaymentInfoDto::from))
-                .apply("Payment Information").apply("id").apply(String.valueOf(id));
+        return masterService.findById(id);
     }
 
     @Transactional
-    public ModificationResult<Integer> create(PaymentInfoForm form) {
+    @CachePut(value = "payment.master", key = "#result.id()")
+    @CacheEvict(value = "payment.list", allEntries = true)
+    public PaymentInfoDto create(PaymentInfoForm form) {
         var entity = new PaymentInfo();
 
         entity.setProvider(form.provider());
@@ -38,11 +42,13 @@ public class PaymentInfoMasterService {
         entity.setAccountName(form.accountName());
 
         entity = repo.save(entity);
-        return new ModificationResult<>(entity.getId());
+        return PaymentInfoDto.from(entity);
     }
 
     @Transactional
-    public ModificationResult<Integer> update(int id, PaymentInfoForm form) {
+    @CachePut(value = "payment.master", key = "#result.id()")
+    @CacheEvict(value = "payment.list", allEntries = true)
+    public PaymentInfoDto update(int id, PaymentInfoForm form) {
         var entity = safeCall(repo.findById(id))
                 .apply("Payment Information").apply("id").apply(String.valueOf(id));
 
@@ -50,6 +56,6 @@ public class PaymentInfoMasterService {
         entity.setAccountNo(form.accountNo());
         entity.setAccountName(form.accountName());
 
-        return new ModificationResult<>(entity.getId());
+        return PaymentInfoDto.from(entity);
     }
 }

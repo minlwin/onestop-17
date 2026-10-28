@@ -2,11 +2,13 @@ package com.jdc.balance.balanceapi.service.management;
 
 import com.jdc.balance.balanceapi.controller.management.input.PlanInfoForm;
 import com.jdc.balance.balanceapi.controller.management.output.PlanInfoDto;
-import com.jdc.balance.balanceapi.model.dto.ModificationResult;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo;
 import com.jdc.balance.balanceapi.model.repo.master.PlanInfoRepo;
+import com.jdc.balance.balanceapi.service.commons.PlanInfoMasterService;
 import com.jdc.balance.balanceapi.utils.exceptions.BalanceAppException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,21 +19,23 @@ import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class PlanInfoMasterService {
+public class PlanInfoManagementService {
 
     private final PlanInfoRepo repo;
+    private final PlanInfoMasterService masterService;
 
     public List<PlanInfoDto> findAll() {
-        return repo.findAll().stream().map(PlanInfoDto::from).toList();
+        return masterService.findAll();
     }
 
     public PlanInfoDto findById(int id) {
-        return safeCall(repo.findById(id).map(PlanInfoDto::from))
-                .apply("Subscription Plan Master").apply("id").apply(String.valueOf(id));
+        return masterService.findById(id);
     }
 
     @Transactional
-    public ModificationResult<Integer> create(PlanInfoForm form) {
+    @CachePut(value = "planinfo.master", key = "#result.id()")
+    @CacheEvict(value = "planinfo.list", allEntries = true)
+    public PlanInfoDto create(PlanInfoForm form) {
         var entity = new PlanInfo();
 
         entity.setName(form.name());
@@ -52,11 +56,13 @@ public class PlanInfoMasterService {
         }
 
         entity = repo.save(entity);
-        return new ModificationResult<>(entity.getId());
+        return PlanInfoDto.from(entity);
     }
 
     @Transactional
-    public ModificationResult<Integer> update(int id, PlanInfoForm form) {
+    @CachePut(value = "planinfo.master", key = "#result.id()")
+    @CacheEvict(value = "planinfo.list", allEntries = true)
+    public PlanInfoDto update(int id, PlanInfoForm form) {
 
         var entity = safeCall(repo.findById(id))
                 .apply("Subscription Plan Master").apply("id").apply(String.valueOf(id));
@@ -78,6 +84,6 @@ public class PlanInfoMasterService {
             entity.setDefaultPlan(false);
         }
 
-        return new ModificationResult<>(entity.getId());
+        return PlanInfoDto.from(entity);
     }
 }

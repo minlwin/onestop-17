@@ -3,7 +3,7 @@ package com.jdc.balance.balanceapi.controller.management;
 import com.jdc.balance.balanceapi.controller.management.input.PaymentInfoForm;
 import com.jdc.balance.balanceapi.controller.management.output.PaymentInfoDto;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
-import com.jdc.balance.balanceapi.service.management.PaymentInfoMasterService;
+import com.jdc.balance.balanceapi.service.management.PaymentInfoManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("management/master/payments")
 public class PaymentInfoMasterApi {
 
-    private final PaymentInfoMasterService service;
+    private final PaymentInfoManagementService service;
 
     @GetMapping
     List<PaymentInfoDto> findAll() {
@@ -29,11 +29,13 @@ public class PaymentInfoMasterApi {
 
     @PostMapping
     ModificationResult<Integer> create(@Validated @RequestBody PaymentInfoForm form) {
-        return  service.create(form);
+        var dto =  service.create(form);
+        return new ModificationResult<>(dto.id());
     }
 
     @PutMapping("{id}")
     ModificationResult<Integer> update(@PathVariable int id, @Validated @RequestBody PaymentInfoForm form) {
-        return  service.update(id, form);
+        var dto =  service.update(id, form);
+        return new ModificationResult<>(dto.id());
     }
 }

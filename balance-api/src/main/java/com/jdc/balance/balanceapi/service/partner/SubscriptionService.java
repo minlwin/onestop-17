@@ -10,9 +10,9 @@ import com.jdc.balance.balanceapi.model.entity.domain.account.Company_;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription_;
 import com.jdc.balance.balanceapi.model.repo.business.SubscriptionRepo;
-import com.jdc.balance.balanceapi.model.repo.master.PaymentInfoRepo;
-import com.jdc.balance.balanceapi.model.repo.master.PlanInfoRepo;
 import com.jdc.balance.balanceapi.service.LoginCompanyService;
+import com.jdc.balance.balanceapi.service.commons.PaymentInfoMasterService;
+import com.jdc.balance.balanceapi.service.commons.PlanInfoMasterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +22,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static com.jdc.balance.balanceapi.utils.OptionalUtils.safeCall;
-
 @Service
 @RequiredArgsConstructor
 public class SubscriptionService {
@@ -31,8 +29,9 @@ public class SubscriptionService {
     private final LoginCompanyService loginCompanyService;
     private final SubscriptionSlipFileStore fileStore;
 
-    private final PlanInfoRepo planInfoRepo;
-    private final PaymentInfoRepo paymentInfoRepo;
+    private final PlanInfoMasterService planInfoMasterService;
+    private final PaymentInfoMasterService paymentInfoMasterService;
+
     private final SubscriptionRepo subscriptionRepo;
 
     @Transactional(readOnly = true)
@@ -51,10 +50,9 @@ public class SubscriptionService {
     @Transactional
     public ModificationResult<UUID> subscribe(SubscriptionForm form) {
         var company = loginCompanyService.getInfo();
-        var plan = safeCall(planInfoRepo.findById(form.planId()))
-                .apply("Plan Information").apply("id").apply(form.planId().toString());
-        var paymentInfo = safeCall(paymentInfoRepo.findById(form.paymentInfoId()))
-                .apply("Payment Information").apply("id").apply(form.paymentInfoId().toString());
+        var plan = planInfoMasterService.getReference(form.planId());
+
+        var paymentInfo = paymentInfoMasterService.getReference(form.paymentInfoId());
         var slip = fileStore.save(company, form.paymentSlip());
 
         var subscription = new Subscription();
@@ -74,11 +72,11 @@ public class SubscriptionService {
 
     @Transactional(readOnly = true)
     public List<PlanInfoDto> getPlans() {
-        return planInfoRepo.findAll().stream().map(PlanInfoDto::from).toList();
+        return planInfoMasterService.findAll();
     }
 
     @Transactional(readOnly = true)
     public List<PaymentInfoDto> getPaymentInfos() {
-        return paymentInfoRepo.findAll().stream().map(PaymentInfoDto::from).toList();
+        return paymentInfoMasterService.findAll();
     }
 }
