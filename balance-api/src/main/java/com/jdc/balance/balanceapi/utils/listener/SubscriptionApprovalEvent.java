@@ -1,6 +1,6 @@
 package com.jdc.balance.balanceapi.utils.listener;
 
-import java.util.UUID;
+import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.SubscriptionPk;
 
-public record SubscriptionApprovalEvent(UUID id) {
+public record SubscriptionApprovalEvent(SubscriptionPk id) {
 }

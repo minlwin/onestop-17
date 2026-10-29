@@ -5,6 +5,7 @@ import com.jdc.balance.balanceapi.controller.management.output.PlanInfoDto;
 import com.jdc.balance.balanceapi.controller.management.output.SubscriptionListItem;
 import com.jdc.balance.balanceapi.controller.partner.input.SubscriptionForm;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
+import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.SubscriptionPk;
 import com.jdc.balance.balanceapi.service.partner.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,7 +29,7 @@ public class SubscriptionApi {
     }
 
     @PostMapping
-    ModificationResult<UUID> subscribe(@Validated SubscriptionForm form) {
+    ModificationResult<SubscriptionPk> subscribe(@Validated SubscriptionForm form) {
         return service.subscribe(form);
     }
 

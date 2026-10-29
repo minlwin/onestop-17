@@ -2,12 +2,10 @@ package com.jdc.balance.balanceapi.model.entity.domain.account;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
 import com.jdc.balance.balanceapi.model.entity.consts.RegistrationStatus;
-import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -41,8 +39,6 @@ public class Company extends AbstractEntity {
 
     private LocalDateTime approvedAt;
 
-    @ManyToOne
-    private PlanInfo plan;
-
-    private LocalDate planExpiration;
+    @OneToOne(mappedBy = "company")
+    private CompanyPlan plan;
 }

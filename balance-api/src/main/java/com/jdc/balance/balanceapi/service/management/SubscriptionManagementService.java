@@ -9,6 +9,7 @@ import com.jdc.balance.balanceapi.model.dto.PageResult;
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription;
 import com.jdc.balance.balanceapi.model.entity.domain.business.Subscription_;
+import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.SubscriptionPk;
 import com.jdc.balance.balanceapi.model.repo.business.SubscriptionRepo;
 import com.jdc.balance.balanceapi.utils.listener.SubscriptionApprovalEvent;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -58,22 +59,24 @@ public class SubscriptionManagementService {
         return subscriptionRepo.search(queryFunc, countFunc, page, size);
     }
 
-    public SubscriptionDetails findById(String id) {
-        return safeCall(subscriptionRepo.findById(UUID.fromString(id)).map(SubscriptionDetails::from))
-                .apply("Subscription").apply("id").apply(id);
+    public SubscriptionDetails findById(String companyId, int revision) {
+        var id = SubscriptionPk.from(UUID.fromString(companyId), revision);
+        return safeCall(subscriptionRepo.findById(id).map(SubscriptionDetails::from))
+                .apply("Subscription").apply("id").apply(id.toString());
     }
 
     @Transactional
-    public ModificationResult<UUID> update(String id, SubscriptionStatusForm form) {
+    public ModificationResult<SubscriptionPk> update(String companyId, int revision, SubscriptionStatusForm form) {
 
-        var entity = safeCall(subscriptionRepo.findById(UUID.fromString(id)))
-                .apply("Subscription").apply("id").apply(id);
+        var id = SubscriptionPk.from(UUID.fromString(companyId), revision);
+        var entity = safeCall(subscriptionRepo.findById(id))
+                .apply("Subscription").apply("id").apply(id.toString());
 
         entity.setStatus(form.status());
         entity.setRemark(form.remark());
+        entity.setApprovedAt(LocalDateTime.now());
 
         if(form.status() == SubscriptionStatus.Approved) {
-            entity.setAppliedAt(LocalDateTime.now());
             eventPublisher.publishEvent(new SubscriptionApprovalEvent(entity.getId()));
         }
 

@@ -1,8 +1,10 @@
 package com.jdc.balance.balanceapi.model.entity.domain.business;
 
 import com.jdc.balance.balanceapi.model.entity.AbstractEntity;
+import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionAction;
 import com.jdc.balance.balanceapi.model.entity.consts.SubscriptionStatus;
 import com.jdc.balance.balanceapi.model.entity.domain.account.Company;
+import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.SubscriptionPk;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PaymentInfo;
 import com.jdc.balance.balanceapi.model.entity.domain.master.PlanInfo;
 import jakarta.persistence.*;
@@ -12,43 +14,36 @@ import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
 public class Subscription extends AbstractEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
 
-    @ManyToOne(optional = false)
+    @EmbeddedId
+    private SubscriptionPk id;
+
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
     private Company company;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private PlanInfo planInfo;
 
     @Column(nullable = false)
-    private int months;
-
+    private SubscriptionStatus status;
     @Column(nullable = false)
-    private LocalDate subscriptionDate;
+    private SubscriptionAction action;
 
-    @Column(nullable = false)
+    @ManyToOne
+    private PaymentInfo paymentInfo;
     private BigDecimal monthlyFee;
 
-    @ManyToOne(optional = false)
-    private PaymentInfo payment;
-
-    @Column(nullable = false)
     private String paymentSlip;
+    private LocalDate subscriptionDate;
 
-    @Column(nullable = false)
-    private SubscriptionStatus status;
+    private LocalDateTime appliedAt;
+    private LocalDateTime approvedAt;
     private String remark;
 
-    @Column(nullable = false)
-    private LocalDateTime appliedAt;
-
-    private LocalDateTime approvedAt;
 }

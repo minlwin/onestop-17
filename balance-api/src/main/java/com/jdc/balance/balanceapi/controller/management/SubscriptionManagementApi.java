@@ -6,12 +6,11 @@ import com.jdc.balance.balanceapi.controller.management.output.SubscriptionDetai
 import com.jdc.balance.balanceapi.controller.management.output.SubscriptionListItem;
 import com.jdc.balance.balanceapi.model.dto.ModificationResult;
 import com.jdc.balance.balanceapi.model.dto.PageResult;
+import com.jdc.balance.balanceapi.model.entity.domain.business.embeddables.SubscriptionPk;
 import com.jdc.balance.balanceapi.service.management.SubscriptionManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,15 +27,15 @@ public class SubscriptionManagementApi {
         return service.search(form, page, size);
     }
 
-    @GetMapping("{id}")
-    SubscriptionDetails findById(@PathVariable String id) {
-        return service.findById(id);
+    @GetMapping("{companyId}/{revision}")
+    SubscriptionDetails findById(@PathVariable String companyId, @PathVariable int revision) {
+        return service.findById(companyId, revision);
     }
 
-    @PutMapping("{id}")
-    ModificationResult<UUID> updateStatus(
-            @PathVariable String id,
+    @PutMapping("{companyId}/{revision}")
+    ModificationResult<SubscriptionPk> updateStatus(
+            @PathVariable String companyId, @PathVariable int revision,
             @Validated @RequestBody SubscriptionStatusForm form) {
-        return  service.update(id, form);
+        return  service.update(companyId, revision, form);
     }
 }
