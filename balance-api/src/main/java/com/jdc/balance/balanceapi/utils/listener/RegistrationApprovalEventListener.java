@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Slf4j
 @Component
@@ -45,6 +46,8 @@ public class RegistrationApprovalEventListener {
                 subscription.setPlanInfo(defaultPlan);
                 subscription.setStatus(SubscriptionStatus.Approved);
                 subscription.setAction(SubscriptionAction.Registration);
+                subscription.setAppliedAt(LocalDateTime.now());
+                subscription.setApprovedAt(LocalDateTime.now());
                 subscription = subscriptionRepo.save(subscription);
 
                 var companyPlan = new CompanyPlan();

@@ -1,5 +1,5 @@
 package com.jdc.balance.balanceapi.model.entity.consts;
 
 public enum SubscriptionAction {
-    Registration, Subscription
+    Registration, Subscription, Schedular
 }
